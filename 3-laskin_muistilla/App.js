@@ -64,17 +64,5 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
-  }
+  },
 });
-
-
-
-
-
-
-
-
-else if (arvaa == numero){
-  Alert.alert("OIKEA VASTAUS", "Arvasit oikein, käytit " + maara + " arvausta");
-  return null;
-}}
