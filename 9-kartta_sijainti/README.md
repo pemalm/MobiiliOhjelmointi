@@ -1,0 +1,1 @@
+# Karttaohjelma, oletuksena käyttäjän sijainti
