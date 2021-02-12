@@ -72,8 +72,7 @@ export default function App() {
       <Text></Text>
       <FlatList
         style={{ marginLeft: '5%' }}
-        //keyExtractor={(item) => item.id.toString()}
-        //aiheuttaa virheilmoituksen käynnistettäessö
+        keyExtractor={(item) => item.key}
         renderItem={({ item }) => (
           <View style={styles.listcontainer}>
             <Text style={{ fontSize: 18 }}>
