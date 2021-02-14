@@ -1,0 +1,1 @@
+React native ExpoSDK puhelimen yhteystietojen luku
