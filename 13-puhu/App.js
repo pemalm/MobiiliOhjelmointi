@@ -6,7 +6,6 @@ import { StatusBar } from 'expo-status-bar';
 
 export default function App() {
   const [sana, setSana] = useState('');
-  const [sana2, setSana2] = useState('');
   const puhu = () => {
     Speech.speak(sana);
   };
