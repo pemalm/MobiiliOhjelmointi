@@ -15,13 +15,14 @@ Ohjelma tehty React Nativella.
 - Kamera tehty käyttäen expo-camera:a, ja varsinaisen kuvan ottaminen captureScreen kirjastolla. Tämä sen takia että kuviin saadaan teeman mukaiset kehykset.
 - Lähimmät ravintolat listataan käyttäen Googlen nearby-search komentoa, sijainti haetaan automaattisesti käytettävän laitteen gps:n avulla (expo-location)
 
-## Rajapinnat 
+## Rajapinnat, tekniikkaa ym
 
 - Reseptihaussa recipepuppy API
-- Ravintolahaussa Google maps API
+- Ravintolahaussa Google maps nearbysearch API
 - Kamera Expo-Camera, käyttäjälupa pyydetään kameralle sekä laitteen sisäisen muistin käytölle
-- Karttahaussa MapQuest API sekä ravintolatiedot open-api.myhelsinki (https://hri.fi/data/dataset/myhelsinki-open-api-paikat-tapahtumat-ja-aktiviteetit)
+- Karttahaussa Google Maps API sekä ravintolatiedot open-api.myhelsinki (https://hri.fi/data/dataset/myhelsinki-open-api-paikat-tapahtumat-ja-aktiviteetit)
 - Muistio käyttää SQLite open databasea
+- Ohjelmassa käytetty erilaisia tapoja toteuttaa painikkeet ja muut käyttäjävalinnat, Button, TouchableOpacity, Pressable sekä suoraan text-komponenttiin liitetty onPress
 
 ## Screenshot
  

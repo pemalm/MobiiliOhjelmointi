@@ -187,12 +187,4 @@ const styles = StyleSheet.create({
     width: 100,
     height: 100,
   },
-  photobutton: {
-    flexDirection: 'row',
-    position: 'relative',
-    bottom: '0%',
-    left: '0%',
-    width: 50,
-    height: 50,
-  },
 });

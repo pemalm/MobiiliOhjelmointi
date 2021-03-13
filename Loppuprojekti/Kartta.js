@@ -14,8 +14,7 @@ import MapView, { Callout, Marker } from 'react-native-maps';
 import Constants from 'expo-constants';
 
 export default function App() {
-  const [street, setStreet] = useState('');
-  const [regionPosition, setRegionPosition] = useState({
+  const [sijainti, setSijainti] = useState({
     lat: 60.166628,
     lng: 24.943508,
   });
@@ -23,22 +22,15 @@ export default function App() {
   const [restaurants, setRestaurants] = useState();
 
   async function getRestaurants() {
-    const url = `http://www.mapquestapi.com/geocoding/v1/address?key=WGC75IA0l1nzqfEQkyk86ZANi4WpT8xV&location=${street.replace(
-      ' ',
-      '+'
-    )}+Helsinki+Finland`;
+    const url = `https://maps.googleapis.com/maps/api/geocode/json?address=helsinki,finland&key=AIzaSyCjyREvhASQpXGViuOX3ND66JQRSQLPlPU'`;
     try {
       const fetched = await fetch(url);
       const fetchedJson = await fetched.json();
-      const position = fetchedJson.results[0].locations[0].latLng;
-      setRegionPosition({ lat: position.lat, lng: position.lng });
-      const url2 = `http://open-api.myhelsinki.fi/v1/places/?tags_search=Restaurant&distance_filter=${
-        position.lat
-      }%2C${position.lng}%2C${'2'}`;
+      const url2 = `http://open-api.myhelsinki.fi/v1/places/?tags_search=Restaurant&distance_filter=${60.166628}%2C${24.943508}%2C${'2'}`;
       const fetchedRestaurants = await fetch(url2);
       const fetchedRestaurantsJson = await fetchedRestaurants.json();
       setRestaurants(fetchedRestaurantsJson.data);
-    } catch (e) {}
+    } catch (e) { <Text></Text>}
   }
 
   return (
@@ -54,29 +46,29 @@ export default function App() {
         Eikö ruoka onnistunut? Etsi lähin ravintola!
       </Text>
       <MapView
-        style={styles.mapStyle}
+        style={styles.kartta}
         region={{
-          latitude: regionPosition.lat,
-          longitude: regionPosition.lng,
-          latitudeDelta: regionPosition.lat != 60.166628 ? 0.01 : 0.15,
-          longitudeDelta: regionPosition.lng != 24.943508 ? 0.01 : 0.15,
+          latitude: sijainti.lat,
+          longitude: sijainti.lng,
+          latitudeDelta: sijainti.lat != 60.166628 ? 0.01 : 0.15,
+          longitudeDelta: sijainti.lng != 24.943508 ? 0.01 : 0.15,
         }}>
         {restaurants ? (
-          restaurants.map((r) => (
+          restaurants.map((tiedot) => (
             <Marker
-              key={r.id}
+              key={tiedot.id}
               coordinate={{
-                latitude: r.location.lat,
-                longitude: r.location.lon,
+                latitude: tiedot.location.lat,
+                longitude: tiedot.location.lon,
               }}>
               <Callout
                 tooltip={false}
-                onPress={() => Linking.openURL(r.info_url)}>
-                <Text style={{ fontWeight: 'bold' }}>{r.name.fi}</Text>
+                onPress={() => Linking.openURL(tiedot.info_url)}>
+                <Text style={{ fontWeight: 'bold' }}>{tiedot.name.fi}</Text>
                 <Text style={{ width: 300, margin: 10 }}>
-                  {r.description.body}
+                  {tiedot.description.body}
                 </Text>
-                <Text>{r.info_url}</Text>
+                <Text>{tiedot.info_url}</Text>
               </Callout>
             </Marker>
           ))
@@ -85,8 +77,8 @@ export default function App() {
         )}
       </MapView>
       <View style={{ flexDirection: 'row', padding: 4, alignItems: 'center' }}>
-        <Pressable style={styles.showButton} onPress={() => getRestaurants()}>
-          <Text style={styles.buttonText}>Etsi lähimmät ravintolat</Text>
+        <Pressable style={styles.painike} onPress={() => getRestaurants()}>
+          <Text style={styles.nappi}>Etsi lähimmät ravintolat</Text>
         </Pressable>
       </View>
       <StatusBar style="auto" />
@@ -110,23 +102,23 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     borderColor: '#FFFFFF',
   },
-  mapStyle: {
+  kartta: {
     width: '100%',
     height: '85%',
   },
-  showButton: {
+  painike: {
     margin: 8,
     padding: 10,
     justifyContent: 'center',
     alignItems: 'center',
-    borderColor: '#555',
+    borderColor: '#000000',
     borderRadius: 5,
     backgroundColor: 'green',
     borderWidth: 1,
-    height: 60,
-    width: 100,
+    height: 40,
+    width: 150,
   },
-  buttonText: {
-    color: '#ffe',
+  nappi: {
+    color: '#ffffff',
   },
 });
