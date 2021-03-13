@@ -91,28 +91,53 @@ export default function App() {
               {item.href}
               {'\n'}
             </Text>
-            <Text
-              onPress={() =>
-                Clipboard.setString(
-                  'Reseptin nimi:\n' +
-                    item.title +
-                    '\nReseptin osoite: ' +
-                    item.href
-                )
-              }
-              style={{
-                color: '#000000',
-                fontSize: 15,
-                fontFamily: 'Arial',
-                fontStyle: 'bold',
-                textAlign: 'center',
-                marginTop: 3,
-                marginLeft: 100,
-                marginBottom: 17,
-              }}>
-              Kopioi leikepöydälle{' '}
-              <Ionicons name="md-clipboard" size={20} color="black" />
-            </Text>
+            <View style={{ flexDirection: 'row' }}>
+              <Text
+                onPress={() =>
+                  Linking.openURL(
+                    'mailto:?subject=Herkkuresepti&body=Katso minkälaisen herkkureseptin löysin!\n\nReseptin nimi on ' +
+                      item.title +
+                      ',\n\nja sen voit katsoa osoitteesta ' +
+                      item.href +
+                      '!'
+                  )
+                }
+                style={{
+                  color: '#000000',
+                  fontSize: 15,
+                  fontFamily: 'Arial',
+                  fontStyle: 'bold',
+                  textAlign: 'center',
+                  marginTop: 3,
+                  marginLeft: 1,
+                  marginBottom: 17,
+                }}>
+                Lähetä sähköpostilla{' '}
+                <Ionicons name="md-mail" size={20} color="black" />
+              </Text>
+              <Text
+                onPress={() =>
+                  Clipboard.setString(
+                    'Reseptin nimi:\n' +
+                      item.title +
+                      '\nReseptin osoite: ' +
+                      item.href
+                  )
+                }
+                style={{
+                  color: '#000000',
+                  fontSize: 15,
+                  fontFamily: 'Arial',
+                  fontStyle: 'bold',
+                  textAlign: 'center',
+                  marginTop: 3,
+                  marginLeft: 20,
+                  marginBottom: 17,
+                }}>
+                Kopioi leikepöydälle{' '}
+                <Ionicons name="md-clipboard" size={20} color="black" />
+              </Text>
+            </View>
           </>
         )}
         ItemSeparatorComponent={FlatListItemSeparator}

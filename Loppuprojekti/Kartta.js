@@ -67,10 +67,11 @@ export default function App() {
                 tooltip={false}
                 onPress={() => Linking.openURL(tiedot.info_url)}>
                 <Text style={{ fontWeight: 'bold' }}>{tiedot.name.fi}</Text>
-                <Text style={{ width: 300, margin: 10 }}>
-                  {tiedot.description.body}
+                <Text style={{ width: 200, margin: 1 }}>
+                  Ravintolan tiedot:{"\n"}{tiedot.description.body}
                 </Text>
-                <Text>{tiedot.info_url}</Text>
+                <Text>{"\n"}Ravintolan nettiosoite:{"\n"}</Text><Text style={{ color: '#FF904D' }} onPress={() => {
+                Linking.openURL(tiedot.info_url);}}>{tiedot.info_url}</Text>
               </Callout>
             </Marker>
           ))
