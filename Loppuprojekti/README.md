@@ -20,7 +20,7 @@ Ohjelma tehty React Nativella.
 - Reseptihaussa recipepuppy API
 - Ravintolahaussa Google maps nearbysearch API
 - Kamera Expo-Camera, käyttäjälupa pyydetään kameralle sekä laitteen sisäisen muistin käytölle
-- Karttahaussa Google Maps API sekä ravintolatiedot open-api.myhelsinki (https://hri.fi/data/dataset/myhelsinki-open-api-paikat-tapahtumat-ja-aktiviteetit)
+- Karttahaussa Google Maps API sekä ravintolatiedot open-api.myhelsinki (https://hri.fi/data/dataset/myhelsinki-open-api-paikat-tapahtumat-ja-aktiviteetit). Käytetty eri API lähteitä, jolla saatu erilaisia hakuja tehtyä koodiin.
 - Muistio käyttää SQLite open databasea
 - Ohjelmassa käytetty erilaisia tapoja toteuttaa painikkeet ja muut käyttäjävalinnat, Button, TouchableOpacity, Pressable sekä suoraan text-komponenttiin liitetty onPress
 

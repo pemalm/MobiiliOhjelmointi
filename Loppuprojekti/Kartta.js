@@ -30,7 +30,9 @@ export default function App() {
       const fetchedRestaurants = await fetch(url2);
       const fetchedRestaurantsJson = await fetchedRestaurants.json();
       setRestaurants(fetchedRestaurantsJson.data);
-    } catch (e) { <Text></Text>}
+    } catch (e) {
+      <Text></Text>;
+    }
   }
 
   return (
@@ -81,6 +83,16 @@ export default function App() {
           <Text style={styles.nappi}>Etsi lähimmät ravintolat</Text>
         </Pressable>
       </View>
+      <Text>{'\n'}</Text>
+      <Text
+        style={{
+          margin: 10,
+          fontWeight: 'bold',
+          color: '#000000',
+          fontSize: 10,
+        }}>
+        huom! tämä on demo, haku ainoastaan Helsingin alueella
+      </Text>
       <StatusBar style="auto" />
     </View>
   );
