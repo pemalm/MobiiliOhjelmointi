@@ -104,7 +104,7 @@ export default function App() {
                 }
                 style={{
                   color: '#000000',
-                  fontSize: 15,
+                  fontSize: 13,
                   fontFamily: 'Arial',
                   fontStyle: 'bold',
                   textAlign: 'center',
@@ -113,7 +113,7 @@ export default function App() {
                   marginBottom: 17,
                 }}>
                 Lähetä sähköpostilla{' '}
-                <Ionicons name="md-mail" size={20} color="black" />
+                <Ionicons name="md-mail" size={18} color="black" />
               </Text>
               <Text
                 onPress={() =>
@@ -126,7 +126,7 @@ export default function App() {
                 }
                 style={{
                   color: '#000000',
-                  fontSize: 15,
+                  fontSize: 13,
                   fontFamily: 'Arial',
                   fontStyle: 'bold',
                   textAlign: 'center',
@@ -135,7 +135,7 @@ export default function App() {
                   marginBottom: 17,
                 }}>
                 Kopioi leikepöydälle{' '}
-                <Ionicons name="md-clipboard" size={20} color="black" />
+                <Ionicons name="md-clipboard" size={18} color="black" />
               </Text>
             </View>
           </>

@@ -106,8 +106,9 @@ export default class App extends React.Component {
                   Linking.openURL('https://maps.google.com?q=' + item.vicinity);
                 }}>
                 {item.vicinity}
-                {'\n'} ______________________________
-              </Text>
+                {'\n'}
+                </Text>
+                <Text>{'\n'} ----- {'\n'}</Text>
             </Text>
           )}
           style={{

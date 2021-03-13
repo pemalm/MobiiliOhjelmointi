@@ -15,21 +15,20 @@ import Constants from 'expo-constants';
 
 export default function App() {
   const [sijainti, setSijainti] = useState({
-    lat: 60.166628,
-    lng: 24.943508,
+    lat: 60.166640739,
+    lng: 24.943536799,
   });
-  const [restaurantDistance, setRestaurantDistance] = useState('2');
-  const [restaurants, setRestaurants] = useState();
+  const [ravintola, setRavintola] = useState();
 
-  async function getRestaurants() {
+  async function getRavintola() {
     const url = `https://maps.googleapis.com/maps/api/geocode/json?address=helsinki,finland&key=AIzaSyCjyREvhASQpXGViuOX3ND66JQRSQLPlPU'`;
     try {
       const fetched = await fetch(url);
       const fetchedJson = await fetched.json();
-      const url2 = `http://open-api.myhelsinki.fi/v1/places/?tags_search=Restaurant&distance_filter=${60.166628}%2C${24.943508}%2C${'2'}`;
-      const fetchedRestaurants = await fetch(url2);
-      const fetchedRestaurantsJson = await fetchedRestaurants.json();
-      setRestaurants(fetchedRestaurantsJson.data);
+      const url2 = `http://open-api.myhelsinki.fi/v1/places/?tags_search=Restaurant&distance_filter=${60.166640739}%2C${24.943536799}%2C${'2'}`;
+      const haetutRavintolat = await fetch(url2);
+      const haetutJSON = await haetutRavintolat.json();
+      setRavintola(haetutJSON.data);
     } catch (e) {
       <Text></Text>;
     }
@@ -52,11 +51,11 @@ export default function App() {
         region={{
           latitude: sijainti.lat,
           longitude: sijainti.lng,
-          latitudeDelta: sijainti.lat != 60.166628 ? 0.01 : 0.15,
-          longitudeDelta: sijainti.lng != 24.943508 ? 0.01 : 0.15,
+          latitudeDelta: 0.0667,
+          longitudeDelta: 0.0667,
         }}>
-        {restaurants ? (
-          restaurants.map((tiedot) => (
+        {ravintola ? (
+          ravintola.map((tiedot) => (
             <Marker
               key={tiedot.id}
               coordinate={{
@@ -65,13 +64,29 @@ export default function App() {
               }}>
               <Callout
                 tooltip={false}
-                onPress={() => Linking.openURL(tiedot.info_url)}>
-                <Text style={{ fontWeight: 'bold' }}>{tiedot.name.fi}</Text>
-                <Text style={{ width: 200, margin: 1 }}>
-                  Ravintolan tiedot:{"\n"}{tiedot.description.body}
+                onPress={() => {
+                  Linking.openURL(tiedot.info_url);
+                }}>
+                <Text style={{ fontWeight: 'bold', fontSize: 18 }}>
+                  {tiedot.name.fi}
                 </Text>
-                <Text>{"\n"}Ravintolan nettiosoite:{"\n"}</Text><Text style={{ color: '#FF904D' }} onPress={() => {
-                Linking.openURL(tiedot.info_url);}}>{tiedot.info_url}</Text>
+                <Text
+                  style={{
+                    width: 200,
+                    margin: 1,
+                    color: '#000000',
+                    fontSize: 16,
+                  }}>
+                  Ravintolan tiedot:{'\n'}
+                  {tiedot.description.body}
+                </Text>
+                <Text style={{ color: '#FF904D', fontSize: 14 }}>
+                  {'\n'}Ravintolan nettiosoite:{'\n'}
+                </Text>
+                <Text style={{ color: '#FF904D', fontSize: 12 }}>
+                  {tiedot.info_url}
+                </Text>
+                <Text>Klikkaa lisätietoja</Text>
               </Callout>
             </Marker>
           ))
@@ -80,7 +95,7 @@ export default function App() {
         )}
       </MapView>
       <View style={{ flexDirection: 'row', padding: 4, alignItems: 'center' }}>
-        <Pressable style={styles.painike} onPress={() => getRestaurants()}>
+        <Pressable style={styles.painike} onPress={() => getRavintola()}>
           <Text style={styles.nappi}>Etsi lähimmät ravintolat</Text>
         </Pressable>
       </View>
